@@ -7,7 +7,7 @@
 #SBATCH --output=%x-%j.out
 
 module load miniforge3/26.7.2-0
-source activate pytorch_env
+source activate twin_env
 
 CKPT_DIR=/scratch/$USER/$SLURM_JOB_NAME
 mkdir -p "$CKPT_DIR"

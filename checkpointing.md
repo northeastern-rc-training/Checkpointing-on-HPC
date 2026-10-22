@@ -88,6 +88,10 @@ The source material lists four types. Define them crisply, because "user-level" 
 | **User-level** (transparent, user space) | A library intercepts the process | None | DMTCP | Legacy/closed codes with no restart support |
 | **System-level** (kernel/OS) | The OS snapshots the process | None | CRIU (+ NVIDIA `cuda-checkpoint` for GPU) | Admin-driven use cases; rarely user-facing |
 
+Note: 
+- DMTCP here is only addressed as an item for the one of the types of the checkpointing but in fact we don't have it in the cluster.
+- Another item that is left out from the training is the system-level type just to mention all existing options in general but not applied in RC's case this time.
+
 ```mermaid
 flowchart TD
     Q1{Does your software have<br/>built-in restart support?}
@@ -230,7 +234,7 @@ sequenceDiagram
 #SBATCH --open-mode=append          # keep logs across restarts
 #SBATCH --output=%x-%j.out
 
-CKPT_DIR=/path/on/vast/$USER/$SLURM_JOB_NAME
+CKPT_DIR=/path/to/directory/$USER/$SLURM_JOB_NAME
 mkdir -p "$CKPT_DIR"
 echo "Start: restart count = ${SLURM_RESTART_COUNT:-0}"
 
@@ -314,8 +318,6 @@ python run.py --ckpt-dir "$CKPT_DIR" --resume
 CKPT_DIR=$BASE/ckpt_${SLURM_ARRAY_TASK_ID}
 python run.py --param-index "$SLURM_ARRAY_TASK_ID" --ckpt-dir "$CKPT_DIR" --resume
 ```
-
-Alternative to Pattern A: chain jobs with `sbatch --dependency=afterany:<jobid>` or `--dependency=singleton`.
 
 ### 5e. MPI jobs: GROMACS example
 
