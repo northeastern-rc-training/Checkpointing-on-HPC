@@ -89,6 +89,7 @@ The source material lists four types. Define them crisply, because "user-level" 
 | **System-level** (kernel/OS) | The OS snapshots the process | None | CRIU (+ NVIDIA `cuda-checkpoint` for GPU) | Admin-driven use cases; rarely user-facing |
 
 Note: 
+- Preemption — jobs on preemptible/scavenger partitions can be stopped at any time. Example, the sharing partition can be used in 1 hour bursts and with checkpointing, you can chain for a multiple hour job (you can change the language but the preemptible partition applies to AICR and sharing applies to Explorer). 
 - DMTCP here is only addressed as an item for the one of the types of the checkpointing but in fact we don't have it in the cluster.
 - Another item that is left out from the training is the system-level type just to mention all existing options in general but not applied in RC's case this time.
 
