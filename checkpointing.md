@@ -3,20 +3,20 @@
 
 ## Table of content
 
-1. [Opening story: the GPU node incident](#Opening story: the GPU node incident)
-2. [Why checkpoint?](#Why checkpoint?)
+1. [Opening story: the GPU node incident](#opening_story:_the_GPU_node_incident)
+2. [Why checkpoint?](#Why_checkpoint?)
 3. [The four checkpointing types (taxonomy)](#the_four_checkpointing_types_(taxonomy))
-4. [Pre-flight discipline: profile, dry-run, estimate VRAM](#Pre-flight discipline: profile, dry-run, estimate VRAM)
-5. [Slurm mechanics + job patterns (serial, loop/vector, array, MPI)](#Slurm mechanics + job patterns (serial, loop/vector, array, MPI))
-6. [ML model-level checkpointing (PyTorch, TensorFlow)](#ML model-level checkpointing (PyTorch, TensorFlow))
-6.1. [Beyond ML and MD: find your software (strategy families)](#Beyond ML and MD: find your software (strategy families))
-6.2. [Open OnDemand users: interactive sessions](#Open OnDemand users: interactive sessions)
-7. [Storage and I/O hygiene](#Storage and I/O hygiene)
-8. [Checklist + live demo + support](#Checklist + live demo + support)
+4. [Pre-flight discipline: profile, dry-run, estimate VRAM](#Pre-flight_discipline:_profile,_dry-run,_estimate_VRAM)
+5. [Slurm mechanics + job patterns (serial, loop/vector, array, MPI)](#Slurm_mechanics_+_job_patterns_(serial,_loop/vector,_array,_MPI))
+6. [ML model-level checkpointing (PyTorch, TensorFlow)](#ML_model-level_checkpointing_(PyTorch,_TensorFlow))
+6.1. [Beyond ML and MD: find your software (strategy families)](#Beyond_ML_and_MD:_find_your_software_(strategy_families))
+6.2. [Open OnDemand users: interactive sessions](#Open_OnDemand_users:_interactive_sessions)
+7. [Storage and I/O hygiene](#Storage_and_I/O_hygiene)
+8. [Checklist + live demo + support](#Checklist_+_live_demo_+_support)
 9. [Q&A](#Q&A)
 10. [References](#References)
-11. [Appendix A - Per-application checkpoint reference (handout)](#Appendix A | Per-application checkpoint reference (handout))
-12. [Appendix B - Hands-on practice labs (after the talk)](#Appendix B | Hands-on practice labs (after the talk))
+11. [Appendix A - Per-application checkpoint reference (handout)](#Appendix_A_|_Per-application_checkpoint_reference_(handout))
+12. [Appendix B - Hands-on practice labs (after the talk)](#Appendix_B_|_Hands-on_practice_labs_(after_the_talk))
 
 
 ## 1. Opening story: the GPU node incident (4 min)
