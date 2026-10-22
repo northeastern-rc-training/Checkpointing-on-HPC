@@ -17,19 +17,32 @@ HPC Systems Engineer
 
 ## Table of content
 
-[1. Opening story: the GPU node incident](#1-opening-story-the-GPU-node-incident)
+[1. Opening story: the GPU node incident](#1-opening-story-the-gpu-node-incident)
+
 [2. Why checkpoint?](#2-why-checkpoint)
+
 [3. The four checkpointing types (taxonomy)](#3-the-four-checkpointing-types-taxonomy)
-[4. Pre-flight discipline: profile, dry-run, estimate VRAM](#4-pre-flight-discipline-profile,-dry-run,-estimate-vram)
-[5. Slurm mechanics + job patterns (serial, loop/vector, array, MPI)](#5-slurm-mechanics-job-patterns-serial,loopvector,-array,-mpi)
-[6. ML model-level checkpointing (PyTorch, TensorFlow)](#6-mlmodel-level-checkpointing-pytorch,-tensorflow)
+
+[4. Pre-flight discipline: profile, dry-run, estimate VRAM](#4-pre-flight-discipline-profile-dry-run-estimate-vram)
+
+[5. Slurm mechanics + job patterns (serial, loop/vector, array, MPI)](#5-slurm-mechanics-job-patterns-serial-loopvector-array-mpi)
+
+[6. ML model-level checkpointing (PyTorch, TensorFlow)](#6-mlmodel-level-checkpointing-pytorch-tensorflow)
+
 [6.1. Beyond ML and MD: find your software (strategy families)](#6.1-beyond-ml-and-md-find-your-software-strategy-families)
+
 [6.2. Open OnDemand users: interactive sessions](#6.2-open-ondemand-users-interactive-sessions)
-[7. Storage and I/O hygiene](#7-torage-and-I/O-hygiene)
+
+[7. Storage and I/O hygiene](#7-storage-and-io-hygiene)
+
 [8. Checklist + live demo + support](#8-checklist-live-demo-support)
+
 [9. Q&A](#9-q&a)
+
 [10. References](#10-references)
+
 [11. Appendix A - Per-application checkpoint reference (handout)](#11-appendix-a-i-per-application-checkpoint-reference-handout)
+
 [12. Appendix B - Hands-on practice labs (after the talk)](#12-appendix-b-i-hands-on-practice-labs-after-the-talk)
 
 
