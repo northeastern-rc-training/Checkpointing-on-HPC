@@ -1,3 +1,17 @@
+# Research Computing Training
+
+<img src="ac-grid-5-red.svg" alt="drawing" width="900"/>
+
+## Presentor
+
+Khurshid Shaymardanov
+
+HPC Systems Engineer
+
+[Research Computing](https://rc.northeastern.edu/research-computing-team/)
+
+---
+
 # Checkpointing on the Cluster: Make Your Jobs Restartable
 ---
 
