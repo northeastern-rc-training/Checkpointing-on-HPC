@@ -1,6 +1,6 @@
 # Research Computing Training
 
-<img src="ac-grid-5-red.svg" alt="drawing" width="900"/>
+<img src="ac-grid-5-red.html" alt="drawing" width="900"/>
 
 ## Presentor
 
@@ -660,7 +660,7 @@ Family numbers refer to section 5½. Exact syntax varies by version, so verify e
 
 | Module | Family | How to checkpoint and resume |
 |---|---|---|
-| gromacs/2024.3 | 1, 2 | `-cpt` interval, `-cpi state.cpt` to continue, `-maxh` to stop before the wall time (section 4e). |
+| gromacs/2024.3 | 1, 2 | `-cpt` interval, `-cpi state.cpt` to continue, `-maxh` to stop before the wall time (section 5e). |
 | LAMMPS/29Aug2024 | 1 | `restart N file.*` or `write_restart`; next job uses `read_restart`. |
 | AMBER/24 | 1 | `ntwr` controls restart-file frequency; continue with `-c previous.rst7` and `irest=1, ntx=5` in the mdin. |
 | namd/2.14, 3.0.1 | 1 | `restartfreq`; continue with `bincoordinates`, `binvelocities`, `extendedSystem` from the `.restart.*` files and set `firsttimestep`. |
@@ -670,7 +670,7 @@ Family numbers refer to section 5½. Exact syntax varies by version, so verify e
 | Molcas/25.06 | 1 | Keep the work directory on persistent storage; reuse `RunFile`/`JobIph` files to restart modules (*verify*). |
 | schrodinger (2024-4 to 2026-3) | 1 | Desmond writes `.cpt` checkpoints and multisim workflows can be restarted; Jaguar supports restart files (*verify* flags per release). |
 | EMAN2/2.99.47 | 5 | Refinements write per-iteration outputs; continue from the last completed iteration rather than restarting (*verify*). |
-| VMD, OpenBabel | 6 | Interactive or short; no checkpoint needed. Script long VMD batch analyses with the loop-state pattern (4c). |
+| VMD, OpenBabel | 6 | Interactive or short; no checkpoint needed. Script long VMD batch analyses with the loop-state pattern (5c). |
 
 ### Bioinformatics and genomics
 
@@ -687,7 +687,7 @@ Family numbers refer to section 5½. Exact syntax varies by version, so verify e
 
 | Module | Family | How to checkpoint and resume |
 |---|---|---|
-| python, anaconda3, miniconda3, miniforge3 | 3 | `pickle`/`joblib`, NumPy `.npy`/`.npz`, HDF5 via `h5py`; loop-state pattern (4c); frameworks as in section 5. |
+| python, anaconda3, miniconda3, miniforge3 | 3 | `pickle`/`joblib`, NumPy `.npy`/`.npz`, HDF5 via `h5py`; loop-state pattern (5c); frameworks as in section 6. |
 | R/4.4.1 | 3 | `saveRDS`/`readRDS` for intermediate objects; the `targets` package caches pipeline steps and skips completed ones. |
 | matlab (R2023b to R2025b) | 3 | `save`/`load` inside loops; `matfile` for partial reads/writes of large variables. |
 | julia/1.10.4 | 3 | `Serialization` standard library or JLD2 for saving state. |
@@ -711,7 +711,7 @@ Family numbers refer to section 5½. Exact syntax varies by version, so verify e
 
 ### Libraries, compilers and tools (family 6, or enablers)
 
-Compilers, MPI stacks, CUDA/cuDNN/ROCm, math libraries (MKL, OpenBLAS, TBB, Boost), build tools (cmake, git, go, nodejs, perl, OpenJDK), editors (code-server, cursor-server) and profilers (Nsight, VTune) don't need checkpointing themselves. Two are worth highlighting as **enablers**: **HDF5** and **netCDF** are excellent formats for writing your own checkpoints (portable, self-describing, parallel I/O capable), and **Nsight**/**VTune** are the profiling tools for the pre-flight step in section 3.
+Compilers, MPI stacks, CUDA/cuDNN/ROCm, math libraries (MKL, OpenBLAS, TBB, Boost), build tools (cmake, git, go, nodejs, perl, OpenJDK), editors (code-server, cursor-server) and profilers (Nsight, VTune) don't need checkpointing themselves. Two are worth highlighting as **enablers**: **HDF5** and **netCDF** are excellent formats for writing your own checkpoints (portable, self-describing, parallel I/O capable), and **Nsight**/**VTune** are the profiling tools for the pre-flight step in section 4.
 
 ---
 
@@ -770,13 +770,13 @@ while i < 600:
 print("DONE" if i >= 600 else "stopped for requeue", flush=True)
 ```
 
-`lab1.sbatch`: use the section 4b template with `--time=00:03:00`, `--signal=B:USR1@60`, and `python counter.py` as the application.
+`lab1.sbatch`: use the section 5b template with `--time=00:03:00`, `--signal=B:USR1@60`, and `python counter.py` as the application.
 
 **Verify:** the log shows several "Resuming at" lines with increasing `i` and restart count, "checkpoint" lines right after each signal, and finally `DONE` after about 10 minutes of compute spread over several requeues.
 
 ### B2. Loop-state ("vector") checkpointing
 
-Use the section 4c script with `items = list(range(200))` and `process()` defined as `time.sleep(2)`. Start it, cancel with `scancel` partway through, resubmit.
+Use the section 5c script with `items = list(range(200))` and `process()` defined as `time.sleep(2)`. Start it, cancel with `scancel` partway through, resubmit.
 
 **Verify:** the second run skips everything already listed in `progress.json`, and the total processed count is exactly 200 with no duplicates.
 
@@ -971,7 +971,7 @@ Run with `matlab -batch "lab10"` in a batch job, cancel it, resubmit. **Verify:*
 Minimal generic version:
 
 1. Launch a Jupyter session with a short duration (e.g., the minimum the form allows).
-2. Run a loop that uses the `seconds_left()` helper from section 5¾ and saves state to disk every few iterations and when less than a few minutes remain.
+2. Run a loop that uses the `seconds_left()` helper from section 6.2 and saves state to disk every few iterations and when less than a few minutes remain.
 3. Let the session expire (or delete it from the session card).
 4. Launch a new session, rerun the cell, and confirm it resumes from the saved file.
 5. Compare: rerun the same loop without saving to disk and observe that all progress is lost.
@@ -1007,7 +1007,7 @@ if mdl.SolCount > 0:
 Use small official examples to keep license use and runtime low.
 
 - **Abaqus:** retrieve an example input with `abaqus fetch job=<example>`, add `*RESTART, WRITE, FREQUENCY=1`, stop it partway, and continue with `abaqus job=<new> oldjob=<example>` using `*RESTART, READ`. For an Explicit example, also try `abaqus job=<example> recover`.
-- **STAR-CCM+:** run a small `.sim` with Auto Save enabled using the stop-file script from section 5½; check that `ABORT` stops the run cleanly, the `.sim` is saved, and the requeued job continues from the saved iteration.
+- **STAR-CCM+:** run a small `.sim` with Auto Save enabled using the stop-file script from section 6.2; check that `ABORT` stops the run cleanly, the `.sim` is saved, and the requeued job continues from the saved iteration.
 - **COMSOL:** solve a small time-dependent model in batch, interrupt it, and continue from the recovery file using your version's recovery options.
 
 **Verify (all):** the continued run starts from the saved increment, iteration or time step rather than from zero, and the requeued job waits for license tokens if they're tracked in Slurm.
