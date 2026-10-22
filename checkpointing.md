@@ -5,7 +5,7 @@
 
 1. [Opening story: the GPU node incident](#Opening story: the GPU node incident)
 2. [Why checkpoint?](#Why checkpoint?)
-3. [The four checkpointing types (taxonomy)](#The four checkpointing types (taxonomy))
+3. [The four checkpointing types (taxonomy)](#the_four_checkpointing_types_(taxonomy))
 4. [Pre-flight discipline: profile, dry-run, estimate VRAM](#Pre-flight discipline: profile, dry-run, estimate VRAM)
 5. [Slurm mechanics + job patterns (serial, loop/vector, array, MPI)](#Slurm mechanics + job patterns (serial, loop/vector, array, MPI))
 6. [ML model-level checkpointing (PyTorch, TensorFlow)](#ML model-level checkpointing (PyTorch, TensorFlow))
@@ -19,26 +19,9 @@
 12. [Appendix B - Hands-on practice labs (after the talk)](#Appendix B | Hands-on practice labs (after the talk))
 
 
-|---|---------|---------|
-| 0 | Opening story: the GPU node incident | 4 |
-| 1 | Why checkpoint? | 3 |
-| 2 | The four checkpointing types (taxonomy) | 7 |
-| 3 | Pre-flight discipline: profile, dry-run, estimate VRAM | 7 |
-| 4 | Slurm mechanics + job patterns (serial, loop/vector, array, MPI) | 9 |
-| 5 | ML model-level checkpointing (PyTorch, TensorFlow) | 7 |
-| 5½ | Beyond ML and MD: find your software (strategy families) | 6 |
-| 5¾ | Open OnDemand users: interactive sessions | 5 |
-| 6 | Storage and I/O hygiene | 4 |
-| 7 | Checklist + live demo + support| 4 |
-| — | Q&A | 4 |
-| References | Links  |  —|
-| Appendix A | Per-application checkpoint reference (handout) | — |
-| Appendix B | Hands-on practice labs (after the talk) | — |
----
-
 ## 1. Opening story: the GPU node incident (4 min)
 
-Open with the recent debugging case: a GPU node went into an error state, and the root cause turned out to be **the user's code, not the hardware**. Walk through it in three beats:
+The recent debugging case: a GPU node went into an error state, and the root cause turned out to be **the user's code, not the hardware**:
 
 1. **Symptom** — the node errored and the job (and possibly others on the node) died; hours of compute were lost.
 2. **Diagnosis** — XID errors and job-data correlation pointed at the workload rather than a faulty GPU.
@@ -142,7 +125,7 @@ sequenceDiagram
 
 ## 4. Pre-flight discipline: profile, dry-run, estimate VRAM (7 min)
 
-This is the bridge from the opening story. Checkpointing protects you *after* something goes wrong; pre-flight checks keep things from going wrong at all. Present them as one workflow.
+This is the bridge from the opening story. Checkpointing protects you *after* something goes wrong; pre-flight checks keep things from going wrong at all. 
 
 ```mermaid
 flowchart LR
@@ -209,7 +192,7 @@ sequenceDiagram
     S->>B: job restarts later and resumes
 ```
 
-### 5b. Serial job template (the one slide people will copy)
+### 5b. Serial job template 
 
 ```bash
 #!/bin/bash
@@ -613,7 +596,7 @@ flowchart LR
 
 Email the Research Computing team at rchelp@northeastern.edu.
 
-Come to office hours hosted on Zoom.
+Come to office hours hosted on Teams.
 
 Or book a consultation with an RC team member.
 
